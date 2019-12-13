@@ -7,10 +7,8 @@ class ProductForm extends Component {
     constructor(props) {
         super(props)
         this.handleChange = this.handleChange.bind(this)
-        this.handleSave = this.handleSave.bind(this)
-        console.log("this from constructor-------->>",this.props.product)
-        this.state = {
-            product: Object.assign({}, RESET_VALUES),
+        this.handleSave = this.handleSave.bind(this)        
+        this.state = {            
             errors: {}
         }
     }
@@ -22,10 +20,9 @@ class ProductForm extends Component {
         if(target.type === 'checkbox'){
             value = target.checked
         }
-        this.setState((prevState) => {
-            prevState.product[name] = value
+        this.setState((prevState) => {            
             this.props.product[name] = value
-            return { product: prevState.product }
+            return { product: this.props.product }
         })
         
     }    
