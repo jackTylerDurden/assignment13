@@ -29,7 +29,7 @@ var Product = mongoose.model('product',{
 app.get('/product/get/',(req,res) => {
     Product.find({},(err,products) => {
         let productsToSend = {};
-        products.forEach((prod) => {
+        products.forEach((prod) => {            
             productsToSend[prod.id] = prod;
         })
         res.send(productsToSend)
@@ -39,7 +39,8 @@ app.post('/product/create/',(req,res) => {
     var product = new Product(req.body)    
     product.save((err) => {
         if(err){
-            sendStatus(500)
+            console.log("error---->>>",err)
+            res.sendStatus(500)
         }else{            
             res.sendStatus(200);
             // res.redirect('/product/get');

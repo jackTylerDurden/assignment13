@@ -12,7 +12,7 @@ let PRODUCTS = {
     '5': {id: 5, category: 'Furniture', price: '$1,300', name: 'Dining Table'},
     '6': {id: 6, category: 'Furniture', price: '$100', name: 'Bean Bag'}
 };*/
-const RESET_VALUES = {productid: '', category: '', price: '', name: '', instock:false}
+const RESET_VALUES = {id:'',product: {productid: '', category: '', price: '', name: '', instock:false}}
 
 class Products extends Component {
     constructor(props) {        
@@ -34,6 +34,7 @@ class Products extends Component {
         .then(res => res.json())
         .then(
             (result) => {
+                console.log('result------->>>',result)
                 this.setState({
                     filterText:'',
                     products:result,
@@ -55,32 +56,31 @@ class Products extends Component {
         this.setState(filterInput)
     }
 
-    performDML(product,operation){        
+    performDML(product,operation){   
+        console.log('product ------>>>',product)
+        console.log('operation ------>>>',operation)
         let endpoint="";
         if(operation === 'insert')
             endpoint = 'http://localhost:3001/product/create/'
         else
             endpoint = 'http://localhost:3001/product/update/'+product.productid
-
-        var prodToInsert = {
-            id:product.productid,
-            product:product
-        }
+        
         var xhr = new XMLHttpRequest()
         xhr.open('POST',endpoint)
         xhr.setRequestHeader('Content-Type','application/json')
-        xhr.send(JSON.stringify(prodToInsert));
+        xhr.send(JSON.stringify(product));
         this.setState((prevState) => {            
             let products = prevState.products            
-            products[product.productid] = prodToInsert
+            products[product.id] = product
             prevState.currentProduct =  Object.assign({}, RESET_VALUES)
+            console.log('------>>>',products)
             return { products }
         })
     }
 
-    handleSave(product) {                
-        if (!product.productid){ //Insert Operation
-            product.productid = new Date().getTime()
+    handleSave(product) {          
+        if (!product.id){ //Insert Operation
+            product.id = new Date().getTime()
             this.performDML(product,'insert')            
         }else{ //Update Operation
             this.performDML(product,'update')

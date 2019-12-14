@@ -19,16 +19,15 @@ class ProductTable extends Component {
     render () {        
         let productsArray = Object.keys(this.props.products).map((pid) => this.props.products[pid])
         let rows = []
-
-        productsArray.forEach((product) => {
-            product = product.product            
-            if (product.name.indexOf(this.props.filterText) === -1) {
+        console.log('productsArray---->>>>',productsArray)
+        productsArray.forEach((product) => {                        
+            if (product.product.name.indexOf(this.props.filterText) === -1) {
                 return
             }
             rows.push (
                 <ProductRow 
                     product={product} 
-                    key={product.productid} 
+                    key={product.id} 
                     onDestroy={this.handleDestroy}
                     onEdit={this.handleEdit}></ProductRow>
             )
@@ -39,6 +38,7 @@ class ProductTable extends Component {
                 <table className="table table-striped table-sm ">
                     <thead className="thead-dark">
                         <tr>
+                            <th>Product Id</th>
                             <th>Name</th>
                             <th>Category</th>
                             <th>Price</th>
