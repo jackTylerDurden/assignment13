@@ -54,7 +54,8 @@ app.get('/product/delete/:id',(req,res) => {
     })    
 })
 
-app.post('/product/update/:id',(req,res) => {        
+app.post('/product/update/:id',(req,res) => {
+    console.log("req------>>>",req.params)
     Product.updateOne(req.params,req.body,(err,delData) => {
         res.redirect('/product/get');        
     })

@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { throwStatement } from '@babel/types'
 
-const RESET_VALUES = {id:'',product:{productid: '', category: '', price: '', name: '', instock:false}}
 
 class ProductForm extends Component {
     constructor(props) {
