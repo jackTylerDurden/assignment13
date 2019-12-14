@@ -34,8 +34,8 @@ class ProductForm extends Component {
 
     render () {        
         let productToCommit = this.props.product;
-        let formHeader = productToCommit.productid === '' ? "Add a new Product" : "Update "+productToCommit.name
-        let buttonLabel = productToCommit.productid === '' ? "Save" : "Update "+productToCommit.name
+        let formHeader = productToCommit.productid === '' ? "Add a new Product" : "Update Product"
+        let buttonLabel = productToCommit.productid === '' ? "Save" : "Update"
         return (
             <form>
                 <h4>{formHeader}</h4>

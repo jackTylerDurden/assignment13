@@ -55,8 +55,7 @@ class Products extends Component {
         this.setState(filterInput)
     }
 
-    performDML(product,operation){
-        console.log("result------->>>>",product)     
+    performDML(product,operation){        
         let endpoint="";
         if(operation === 'insert')
             endpoint = 'http://localhost:3001/product/create/'
@@ -81,7 +80,8 @@ class Products extends Component {
 
     handleSave(product) {                
         if (!product.productid){ //Insert Operation
-            this.performDML(product,'insert')
+            product.productid = new Date().getTime()
+            this.performDML(product,'insert')            
         }else{ //Update Operation
             this.performDML(product,'update')
         }                                
