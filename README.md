@@ -3,7 +3,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Available Scripts
 
-Assignment submission number - __4d8575b3-3ec6-4edd-b1e8-6d57b8134869__
+Assignment submission number  __4d8575b3-3ec6-4edd-b1e8-6d57b8134869__
 
 In the project directory, you can run:
 
